@@ -1,0 +1,48 @@
+{
+  "name": "open-print-studio",
+  "version": "1.0.0",
+  "description": "Offline-first ID card, visiting card, and passport photo studio printing desktop app",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:core": "vitest run packages/core",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit && tsc -p packages/core/tsconfig.json --noEmit",
+    "audit:names": "python3 .agents/skills/clean-room-audit/scripts/audit_names.py",
+    "audit:telemetry": "python3 .agents/skills/privacy-local-data/scripts/check_no_telemetry.py",
+    "validate:skills": "python3 tools/validate_skills.py"
+  },
+  "dependencies": {
+    "@mediapipe/tasks-vision": "^0.10.18",
+    "@ops/core": "*",
+    "i18next": "^24.2.0",
+    "lucide-react": "^0.468.0",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^4.9.155",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-i18next": "^15.4.0",
+    "zustand": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/coverage-v8": "^2.1.8",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "playwright": "^1.49.1",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3",
+    "vitest": "^2.1.8"
+  }
+}

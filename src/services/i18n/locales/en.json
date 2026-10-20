@@ -1,0 +1,62 @@
+{
+  "app": {
+    "title": "Open Print Studio",
+    "tagline": "Offline-first ID & Photo Printing Utility",
+    "offline_badge": "100% Offline",
+    "privacy_mode": "Privacy Mode Active"
+  },
+  "nav": {
+    "id_card": "ID Card (CR-80)",
+    "visiting_card": "Visiting Card",
+    "membership_card": "Membership Card",
+    "photo_studio": "AI Passport Photo",
+    "calibration": "Calibration Wizard",
+    "settings": "Settings"
+  },
+  "action": {
+    "print_now": "Print Sheet (Ctrl+P)",
+    "save_pdf": "Save as PDF",
+    "save_png": "Export 300 DPI PNG",
+    "upload_file": "Open File (Ctrl+O)",
+    "clear_history": "Clear All History",
+    "undo": "Undo (Ctrl+Z)",
+    "redo": "Redo (Ctrl+Y)",
+    "calibrate": "Calibrate Printer",
+    "test_print": "Print Test Pattern",
+    "remove_bg": "Remove Background",
+    "apply_crop": "Confirm Crop",
+    "cancel": "Cancel",
+    "save": "Save Changes"
+  },
+  "label": {
+    "paper_preset": "Paper & Media Size",
+    "card_gap": "Card Spacing (mm)",
+    "nudge_offset": "Nudge Alignment (mm)",
+    "card_scale": "Card Scale (%)",
+    "mirror_flip": "Mirror / Flip Mode",
+    "cut_marks": "Show Cut Marks",
+    "canvas_rulers": "Show Millimeter Rulers",
+    "text_darkener": "Faint Text Contrast",
+    "clean_disclaimer": "Clean UIDAI Disclaimer (Opt-in)",
+    "customer_mobile": "Customer Mobile Number",
+    "theme": "Theme",
+    "language": "Language",
+    "privacy_toggle": "Don't Save Customer History (Privacy Mode)",
+    "auto_expiry": "Auto-Delete History After"
+  },
+  "status": {
+    "ready": "Ready for input",
+    "decrypting": "Decrypting document in memory...",
+    "rendering": "Rendering 300 DPI canvas...",
+    "segmenting": "AI background removal running...",
+    "printing": "Spooling zero-margin print job...",
+    "spooled": "Print job spooled successfully",
+    "printer_offline": "Printer is offline or unreachable"
+  },
+  "error": {
+    "wrong_password": "Wrong document password. Hint: FIRST 4 LETTERS OF NAME (CAPS) + BIRTH YEAR (e.g. RAMA1985).",
+    "corrupt_pdf": "Unable to read PDF. The file may be corrupt or invalid.",
+    "low_resolution": "Low resolution image detected (< 600 px). Printout may appear grainy.",
+    "printer_error": "Printer error. Please check paper feed and cable connection."
+  }
+}

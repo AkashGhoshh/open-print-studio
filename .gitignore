@@ -1,5 +1,6 @@
-.agents
-AGENTS.md
-docs
-tools
-target
+node_modules/
+dist/
+coverage/
+*.log
+target/
+*.tsbuildinfo

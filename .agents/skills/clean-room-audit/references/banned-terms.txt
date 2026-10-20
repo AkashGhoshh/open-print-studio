@@ -1,0 +1,15 @@
+# Banned Terms for Clean-Room Audit
+# Lines starting with # are comments. Patterns are matched case-insensitively.
+
+dizi
+dizishop
+dizi_
+app.asar
+deobfuscated
+deobfuscate
+reverse-engineered
+reverse-engineer
+cracked
+pirated
+DRM-bypass
+studio.dizishop.in

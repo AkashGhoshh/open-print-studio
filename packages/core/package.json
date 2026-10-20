@@ -1,0 +1,16 @@
+{
+  "name": "@ops/core",
+  "version": "1.0.0",
+  "description": "Zero-dependency pure TypeScript core geometry, layout solver, and unit math for Open Print Studio",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": ["print", "geometry", "cr-80", "layout-solver", "offline"],
+  "author": "Open Print Studio Contributors",
+  "license": "MIT"
+}
