@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": 1,
+  "templates": [
+    {
+      "id": "eaadhaar-standard",
+      "name": "e-Aadhaar (UIDAI Standard)",
+      "targetCard": "CR-80",
+      "front": {
+        "relX": 0.05,
+        "relY": 0.68,
+        "relW": 0.42,
+        "relH": 0.28,
+        "defaultRotation": 0
+      },
+      "back": {
+        "relX": 0.53,
+        "relY": 0.68,
+        "relW": 0.42,
+        "relH": 0.28,
+        "defaultRotation": 0
+      },
+      "disclaimerRegion": {
+        "relX": 0.05,
+        "relY": 0.93,
+        "relW": 0.90,
+        "relH": 0.05
+      }
+    },
+    {
+      "id": "ayushman-bharat",
+      "name": "Ayushman Bharat (PM-JAY)",
+      "targetCard": "CR-80",
+      "front": {
+        "relX": 0.04,
+        "relY": 0.08,
+        "relW": 0.44,
+        "relH": 0.84,
+        "defaultRotation": 90
+      },
+      "back": {
+        "relX": 0.52,
+        "relY": 0.08,
+        "relW": 0.44,
+        "relH": 0.84,
+        "defaultRotation": 90
+      }
+    },
+    {
+      "id": "pan-card",
+      "name": "PAN Card (NSDL / UTIITSL)",
+      "targetCard": "CR-80",
+      "front": {
+        "relX": 0.06,
+        "relY": 0.64,
+        "relW": 0.88,
+        "relH": 0.32,
+        "defaultRotation": 0
+      },
+      "back": null
+    },
+    {
+      "id": "voter-id-epic",
+      "name": "Voter ID (e-EPIC)",
+      "targetCard": "CR-80",
+      "front": {
+        "relX": 0.05,
+        "relY": 0.15,
+        "relW": 0.42,
+        "relH": 0.35,
+        "defaultRotation": 0
+      },
+      "back": {
+        "relX": 0.53,
+        "relY": 0.15,
+        "relW": 0.42,
+        "relH": 0.35,
+        "defaultRotation": 0
+      }
+    },
+    {
+      "id": "eshram-card",
+      "name": "e-Shram Card",
+      "targetCard": "CR-80",
+      "front": {
+        "relX": 0.05,
+        "relY": 0.12,
+        "relW": 0.42,
+        "relH": 0.38,
+        "defaultRotation": 0
+      },
+      "back": {
+        "relX": 0.53,
+        "relY": 0.12,
+        "relW": 0.42,
+        "relH": 0.38,
+        "defaultRotation": 0
+      }
+    }
+  ]
+}

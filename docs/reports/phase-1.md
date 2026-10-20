@@ -32,7 +32,7 @@ $ npm test
 > open-print-studio@1.0.0 test
 > vitest run
 
- RUN  v2.1.9 /home/akash/Documents/project/dizi-research
+ RUN  v2.1.9 /ops-workspace
 
  ✓ src/services/storage/settings-schema.test.ts (3)
  ✓ packages/core/tests/s-curve.test.ts (4)

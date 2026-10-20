@@ -12,6 +12,17 @@ export const CR80_CORNER_RADIUS_MM = 3.18;
 export const CR80_WIDTH_PX_300DPI = mmToPx(CR80_WIDTH_MM); // 1011 px
 export const CR80_HEIGHT_PX_300DPI = mmToPx(CR80_HEIGHT_MM); // 638 px
 
+export const CR80_DIMENSIONS = {
+  widthMm: CR80_WIDTH_MM,
+  heightMm: CR80_HEIGHT_MM,
+  cornerRadiusMm: CR80_CORNER_RADIUS_MM,
+};
+
+export const CR80_PIXELS_300DPI = {
+  width: CR80_WIDTH_PX_300DPI,
+  height: CR80_HEIGHT_PX_300DPI,
+};
+
 // === Visiting / Business Card Standard ===
 export const VISITING_CARD_WIDTH_MM = 85.00;
 export const VISITING_CARD_HEIGHT_MM = 55.00;
