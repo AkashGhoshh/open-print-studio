@@ -86,6 +86,23 @@ app.whenReady().then(() => {
     });
   });
 
+  ipcMain.handle("ops:export-pdf", async (_event, filePath: string, landscape: boolean) => {
+    if (!mainWindow) return { ok: false, error: "No active window" };
+    try {
+      const data = await mainWindow.webContents.printToPDF({
+        printBackground: true,
+        margins: { marginType: "none" },
+        landscape,
+        scale: 1,
+      });
+      const fs = await import("node:fs/promises");
+      await fs.writeFile(filePath, data);
+      return { ok: true, path: filePath };
+    } catch (err: any) {
+      return { ok: false, error: err.message };
+    }
+  });
+
   createWindow();
 
   app.on("activate", () => {

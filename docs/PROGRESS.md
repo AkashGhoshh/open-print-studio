@@ -13,8 +13,8 @@
 | **Phase 0** | **Spec Hardening & Audit** | **COMPLETE (GREEN)** | Math proofs, capacity checks, clean-room audit, `tools/validate_skills.py` | [`docs/reports/phase-0.md`](./reports/phase-0.md)<br>[`docs/PRD_v3.md`](./PRD_v3.md) |
 | **Phase 1** | **Foundation** (Electron, React 19, TS, Vite, `@ops/core`, Settings, i18n, Tokens) | **COMPLETE (GREEN)** | Pure core Vitest tests (33/33, 100% core coverage), settings migrations, clean bundle | [`docs/reports/phase-1.md`](./reports/phase-1.md) |
 | **Phase 2** | **ID Card Engine** (PDF Worker, Decrypt, Crop Templates, CR-80 Normalizer, S-Curve Contrast, Disclaimer Cleaner) | **COMPLETE (GREEN)** | In-memory decryption test, disclaimer non-overlap integrity test, synthetic card fixtures (58/58 tests passing) | [`docs/reports/phase-2.md`](./reports/phase-2.md) |
-| **Phase 3** | **Sheets & Printing** (Dynamic Solver, A4 5-Pair, 4×6 1-Pair, PVC Tray, Nudge, Flip, Cut Marks, Print Pipeline, PDF/PNG Export) | **IN PROGRESS** | Golden mm coordinate assertions, double-flip pixel-for-pixel invariance test | In progress |
-| **Phase 4** | **Overlays & Recents** (Signature/Stamp, Customer Mobile Overlay, IndexedDB `recent_designs`, 24h Auto-Expiry, Privacy Mode) | **QUEUED** | Storage quota test, auto-expiry cleanup test, privacy mode zero-disk assertion | Pending |
+| **Phase 3** | **Sheets & Printing** (Dynamic Solver, A4 5-Pair, 4×6 1-Pair, PVC Tray, Nudge, Flip, Cut Marks, Print Pipeline, PDF/PNG Export) | **COMPLETE (GREEN)** | Golden mm coordinate assertions, double-flip pixel-for-pixel invariance test (73/73 tests passing) | [`docs/reports/phase-3.md`](./reports/phase-3.md) |
+| **Phase 4** | **Overlays & Recents** (Signature/Stamp, Customer Mobile Overlay, IndexedDB `recent_designs`, 24h Auto-Expiry, Privacy Mode) | **IN PROGRESS** | Storage quota test, auto-expiry cleanup test, privacy mode zero-disk assertion | In progress |
 | **Phase 5** | **Visiting & Membership Cards** (A4 10-Up Visiting Card 85×55mm, Finish Presets, CR-80 Membership Template Mode) | **QUEUED** | Visiting card coordinate test, cut guide alignment verification | Pending |
 | **Phase 6** | **AI Passport Photo Studio** (Offline `@mediapipe/tasks-vision`, 1.5px Alpha Feathering, Backgrounds, Dynamic Grid Solver) | **QUEUED** | Sub-1.5s latency benchmark, edge fringe inspection, dynamic grid rotation solver test | Pending |
 | **Phase 7** | **Calibration & Ergonomics** (Test Sheet with Rulers, Caliper Offset/Scale Solver, Batch Queue, Shortcuts, `ScannerProvider`) | **QUEUED** | Calibration mathematical solver test, keyboard navigation E2E flow | Pending |
@@ -40,8 +40,9 @@ Every contradiction in the original PRD has been resolved, proven with geometry 
 
 ## 3. Current Task & Immediate Next Steps
 
-- **Current Step:** Begin **Phase 3: Sheets and Printing** (dynamic layout solver integration, A4 5-pair, 4×6 1-pair, PVC direct tray, nudge offsets, flip reflection, cut marks, Electron print pipeline, PDF export with pdf-lib, and 300 DPI PNG export).
-- **Completed Steps:** Phase 0 (Spec Hardening), Phase 1 (Foundation), Phase 2 (ID Card Engine).
+- **Current Step:** Begin **Phase 4: Overlays and Recents** (official signature/stamp overlay, customer mobile number on-card overlay, IndexedDB `ops_db` recent designs with blobs and crop metadata, 24h auto-expiry cleanup job, and Privacy Mode toggle).
+- **Completed Steps:** Phase 0 (Spec Hardening), Phase 1 (Foundation), Phase 2 (ID Card Engine), Phase 3 (Sheets & Printing).
 - **Open Blockers:** None.
+
 
 

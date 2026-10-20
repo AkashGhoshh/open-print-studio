@@ -25,6 +25,7 @@ import { TemplateSelector } from "./TemplateSelector";
 import { EnhancementToolbar } from "./EnhancementToolbar";
 import { CardPreviewPane } from "./CardPreviewPane";
 import { PasswordDialog } from "./PasswordDialog";
+import { SheetWorkspace } from "../sheets/SheetWorkspace";
 import type { RotationAngle } from "@ops/core";
 
 export const IdCardWorkspace: React.FC = () => {
@@ -57,6 +58,7 @@ export const IdCardWorkspace: React.FC = () => {
 
   // Output cards
   const [processedSides, setProcessedSides] = useState<ProcessedIdCardSides | null>(null);
+  const [viewMode, setViewMode] = useState<"crop" | "print">("crop");
 
   // Loading & error states
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -279,6 +281,19 @@ export const IdCardWorkspace: React.FC = () => {
     setIsLoading(false);
   };
 
+  if (viewMode === "print") {
+    return (
+      <SheetWorkspace
+        cardPairs={
+          processedSides
+            ? [{ front: processedSides.frontCanvas, back: processedSides.backCanvas }]
+            : []
+        }
+        onBackToCard={() => setViewMode("crop")}
+      />
+    );
+  }
+
   return (
     <div className="flex flex-col gap-5 p-6 max-w-7xl mx-auto">
       {/* Top Header & Actions */}
@@ -398,6 +413,21 @@ export const IdCardWorkspace: React.FC = () => {
           </div>
         )}
       </div>
+
+      {/* Proceed to Sheet Printing Action */}
+      {processedSides && (
+        <div className="flex justify-end pt-2">
+          <button
+            type="button"
+            onClick={() => setViewMode("print")}
+            className="ops-btn ops-btn-primary flex items-center gap-2 text-sm font-semibold px-6 py-3"
+          >
+            <Printer className="w-4 h-4" />
+            <span>Proceed to Sheet Printing (A4 / 4×6 / PVC Tray)</span>
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      )}
 
       {/* Password Modal */}
       <PasswordDialog
