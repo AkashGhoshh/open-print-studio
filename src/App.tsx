@@ -6,12 +6,14 @@ import { ActiveTab } from "./components/layout/NavTabs.js";
 import { loadSettings, saveSettings, AppSettings } from "./services/storage/settings-schema.js";
 import { Upload, CreditCard, Sparkles, Printer, FileText } from "lucide-react";
 import { IdCardWorkspace } from "./components/idcard/IdCardWorkspace.js";
+import { RecentDesignsDrawer } from "./components/recents/RecentDesignsDrawer.js";
 
 export const App: React.FC = () => {
   const { t, i18n } = useTranslation();
   const [settings, setSettings] = useState<AppSettings>(() => loadSettings());
   const [activeTab, setActiveTab] = useState<ActiveTab>("id_card");
   const [statusMessage, setStatusMessage] = useState<string>("");
+  const [isRecentsOpen, setIsRecentsOpen] = useState<boolean>(false);
 
   // Sync theme to DOM data-theme
   useEffect(() => {
@@ -64,6 +66,7 @@ export const App: React.FC = () => {
         locale={settings.locale}
         onToggleLocale={handleToggleLocale}
         privacyMode={settings.privacyMode}
+        onOpenRecents={() => setIsRecentsOpen(true)}
       />
 
       <main className="workspace-container">
@@ -121,6 +124,14 @@ export const App: React.FC = () => {
       </main>
 
       <StatusBar statusMessage={statusMessage} />
+
+      <RecentDesignsDrawer
+        isOpen={isRecentsOpen}
+        onClose={() => setIsRecentsOpen(false)}
+        onSelectDesign={(design) => {
+          setStatusMessage(`Loaded session: ${design.title}`);
+        }}
+      />
     </div>
   );
 };

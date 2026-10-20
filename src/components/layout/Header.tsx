@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Sun, Moon, Languages, ShieldCheck, Printer } from "lucide-react";
+import { Sun, Moon, Languages, ShieldCheck, Printer, History } from "lucide-react";
 import { NavTabs, ActiveTab } from "./NavTabs.js";
 
 interface HeaderProps {
@@ -11,6 +11,7 @@ interface HeaderProps {
   locale: "en" | "hi";
   onToggleLocale: () => void;
   privacyMode: boolean;
+  onOpenRecents?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -21,6 +22,7 @@ export const Header: React.FC<HeaderProps> = ({
   locale,
   onToggleLocale,
   privacyMode,
+  onOpenRecents,
 }) => {
   const { t } = useTranslation();
 
@@ -59,6 +61,19 @@ export const Header: React.FC<HeaderProps> = ({
             {locale === "en" ? "HI" : "EN"}
           </span>
         </button>
+
+        {/* Recent Designs Drawer Button */}
+        {onOpenRecents && (
+          <button
+            className="icon-btn"
+            onClick={onOpenRecents}
+            title="Recent Card Sessions"
+            type="button"
+            aria-label="Recent Designs"
+          >
+            <History size={18} />
+          </button>
+        )}
 
         {/* Theme Toggle Button */}
         <button

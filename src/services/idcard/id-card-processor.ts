@@ -12,6 +12,10 @@ import {
   applyDisclaimerMask,
   type RotationAngle,
   type NormalizedCardResult,
+  calculateMobileOverlayCoordinates,
+  calculateStampPixelRect,
+  type MobileOverlayConfig,
+  type StampOverlayConfig,
 } from "@ops/core";
 import type { IdCardTemplate } from "../crop/template-types";
 
@@ -21,6 +25,12 @@ export interface ProcessCardOptions {
   backRotation?: RotationAngle;
   textBoldLevel?: number; // 0 - 5
   cleanDisclaimer?: boolean;
+  mobileOverlay?: MobileOverlayConfig;
+  stampOverlay?: {
+    config: StampOverlayConfig;
+    image: CanvasImageSource;
+    targetSide?: "front" | "back";
+  };
 }
 
 export interface ProcessedIdCardSides {
@@ -40,7 +50,9 @@ function renderSingleSide(
   relCrop: { relX: number; relY: number; relW: number; relH: number },
   rotation: RotationAngle,
   textBoldLevel: number,
-  disclaimerRegion?: { relX: number; relY: number; relW: number; relH: number }
+  disclaimerRegion?: { relX: number; relY: number; relW: number; relH: number },
+  mobileOverlay?: MobileOverlayConfig,
+  stampOverlay?: { config: StampOverlayConfig; image: CanvasImageSource }
 ): { canvas: HTMLCanvasElement; normal: NormalizedCardResult } {
   const pixelCrop = resolveRelativeCrop(relCrop, sourceWidth, sourceHeight);
   const normal = normalizeToCR80(pixelCrop, rotation, 300);
@@ -95,6 +107,62 @@ function renderSingleSide(
     }
   }
 
+  // If customer mobile overlay requested for this side
+  if (mobileOverlay && mobileOverlay.mobileNumber) {
+    const text = `${mobileOverlay.prefix || ""}${mobileOverlay.mobileNumber}`;
+    const fontSize = mobileOverlay.fontSizePx || 22;
+    ctx.font = `bold ${fontSize}px sans-serif`;
+    const textMetrics = ctx.measureText(text);
+    const boxW = textMetrics.width + 16;
+    const boxH = fontSize + 12;
+
+    const coords = calculateMobileOverlayCoordinates(
+      canvas.width,
+      canvas.height,
+      boxW,
+      boxH,
+      mobileOverlay.position || "bottom-right",
+      mobileOverlay.marginPx || 20
+    );
+
+    ctx.fillStyle = mobileOverlay.backgroundColor || "rgba(255, 255, 255, 0.95)";
+    ctx.strokeStyle = "#CBD5E1";
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    if (typeof (ctx as any).roundRect === "function") {
+      (ctx as any).roundRect(coords.x, coords.y, coords.width, coords.height, 6);
+    } else {
+      ctx.rect(coords.x, coords.y, coords.width, coords.height);
+    }
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = mobileOverlay.textColor || "#0F172A";
+    ctx.textAlign = "left";
+    ctx.textBaseline = "middle";
+    ctx.fillText(text, coords.x + 8, coords.y + coords.height / 2);
+  }
+
+  // If stamp overlay requested for this side
+  if (stampOverlay) {
+    const stampRect = calculateStampPixelRect(
+      canvas.width,
+      canvas.height,
+      stampOverlay.config,
+      300
+    );
+    ctx.save();
+    ctx.globalAlpha = stampOverlay.config.opacity ?? 0.85;
+    ctx.drawImage(
+      stampOverlay.image,
+      stampRect.x,
+      stampRect.y,
+      stampRect.width,
+      stampRect.height
+    );
+    ctx.restore();
+  }
+
   return { canvas, normal };
 }
 
@@ -113,10 +181,15 @@ export function processIdCardDocument(
     backRotation = template.back?.defaultRotation ?? 0,
     textBoldLevel = 0,
     cleanDisclaimer = false,
+    mobileOverlay,
+    stampOverlay,
   } = options;
 
   // Disclaimer cleaning is only evaluated on the front side if opt-in and present
   const frontDisclaimer = cleanDisclaimer ? template.disclaimerRegion : undefined;
+
+  const isStampOnFront = !stampOverlay?.targetSide || stampOverlay.targetSide === "front";
+  const isStampOnBack = stampOverlay?.targetSide === "back";
 
   const front = renderSingleSide(
     source,
@@ -125,7 +198,9 @@ export function processIdCardDocument(
     template.front,
     frontRotation,
     textBoldLevel,
-    frontDisclaimer
+    frontDisclaimer,
+    mobileOverlay,
+    isStampOnFront ? stampOverlay : undefined
   );
 
   let back: { canvas: HTMLCanvasElement; normal: NormalizedCardResult } | null = null;
@@ -137,7 +212,9 @@ export function processIdCardDocument(
       template.back,
       backRotation,
       textBoldLevel,
-      undefined
+      undefined,
+      undefined,
+      isStampOnBack ? stampOverlay : undefined
     );
   }
 

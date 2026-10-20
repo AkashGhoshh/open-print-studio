@@ -15,3 +15,4 @@ export * from "./crop/card-normalizer.js";
 export * from "./crop/disclaimer-cleaner.js";
 export * from "./layout/sheet-presets.js";
 export * from "./layout/cut-marks.js";
+export * from "./crop/card-overlay.js";

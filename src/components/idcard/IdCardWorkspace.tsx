@@ -26,7 +26,9 @@ import { EnhancementToolbar } from "./EnhancementToolbar";
 import { CardPreviewPane } from "./CardPreviewPane";
 import { PasswordDialog } from "./PasswordDialog";
 import { SheetWorkspace } from "../sheets/SheetWorkspace";
-import type { RotationAngle } from "@ops/core";
+import { OverlayManager } from "../overlays/OverlayManager";
+import { indexedDbService } from "../../services/storage/indexeddb-service";
+import type { RotationAngle, MobileOverlayConfig, StampOverlayConfig } from "@ops/core";
 
 export const IdCardWorkspace: React.FC = () => {
   const { t } = useTranslation();
@@ -56,6 +58,22 @@ export const IdCardWorkspace: React.FC = () => {
   const [cleanDisclaimer, setCleanDisclaimer] = useState<boolean>(false);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
 
+  // Overlays (Mobile badge & official stamp)
+  const [enableMobileOverlay, setEnableMobileOverlay] = useState<boolean>(false);
+  const [mobileConfig, setMobileConfig] = useState<MobileOverlayConfig>({
+    mobileNumber: "",
+    prefix: "Mob: ",
+    position: "bottom-right",
+  });
+  const [enableStampOverlay, setEnableStampOverlay] = useState<boolean>(false);
+  const [stampConfig, setStampConfig] = useState<StampOverlayConfig>({
+    relX: 0.65,
+    relY: 0.60,
+    widthMm: 28,
+    heightMm: 16,
+    opacity: 0.85,
+  });
+
   // Output cards
   const [processedSides, setProcessedSides] = useState<ProcessedIdCardSides | null>(null);
   const [viewMode, setViewMode] = useState<"crop" | "print">("crop");
@@ -71,7 +89,7 @@ export const IdCardWorkspace: React.FC = () => {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Re-process when template, rotations, bolding, or cleaner changes
+  // Re-process when template, rotations, bolding, overlays, or cleaner changes
   useEffect(() => {
     if (!renderedSource) return;
 
@@ -86,9 +104,17 @@ export const IdCardWorkspace: React.FC = () => {
           backRotation,
           textBoldLevel,
           cleanDisclaimer,
+          mobileOverlay: enableMobileOverlay && mobileConfig.mobileNumber ? mobileConfig : undefined,
         }
       );
       setProcessedSides(result);
+
+      // Save to IndexedDB recent designs (automatically skipped if Privacy Mode is active)
+      indexedDbService.saveRecentDesign({
+        title: selectedTemplate.name,
+        templateId: selectedTemplate.id,
+        customerMobile: enableMobileOverlay ? mobileConfig.mobileNumber : undefined,
+      }).catch((e) => console.warn("Recent design auto-save skipped:", e));
     } catch (err: any) {
       console.error("Card processing error:", err);
       setErrorMessage("Failed to process card boundaries.");
@@ -100,6 +126,8 @@ export const IdCardWorkspace: React.FC = () => {
     backRotation,
     textBoldLevel,
     cleanDisclaimer,
+    enableMobileOverlay,
+    mobileConfig,
   ]);
 
   // When template changes, reset rotations to template defaults
@@ -366,6 +394,18 @@ export const IdCardWorkspace: React.FC = () => {
         hasDisclaimerRegion={Boolean(selectedTemplate.disclaimerRegion)}
         isFlipped={isFlipped}
         onFlipChange={setIsFlipped}
+      />
+
+      {/* Overlays (Customer Mobile & Stamp) */}
+      <OverlayManager
+        enableMobileOverlay={enableMobileOverlay}
+        onEnableMobileOverlayChange={setEnableMobileOverlay}
+        mobileConfig={mobileConfig}
+        onMobileConfigChange={setMobileConfig}
+        enableStampOverlay={enableStampOverlay}
+        onEnableStampOverlayChange={setEnableStampOverlay}
+        stampConfig={stampConfig}
+        onStampConfigChange={setStampConfig}
       />
 
       {/* Error Alert */}
