@@ -58,5 +58,26 @@
     "corrupt_pdf": "Unable to read PDF. The file may be corrupt or invalid.",
     "low_resolution": "Low resolution image detected (< 600 px). Printout may appear grainy.",
     "printer_error": "Printer error. Please check paper feed and cable connection."
+  },
+  "visiting": {
+    "finish": "Paper Finish",
+    "glossy": "Glossy (210-260 GSM)",
+    "matte": "Matte Cardstock (250-350 GSM)",
+    "plain": "Plain Inkjet",
+    "layout_mode": "Layout Mode",
+    "pairs": "5 Pairs (Front & Back)",
+    "repeated": "10 Repeated (Front Only)",
+    "front_card": "Front Card",
+    "back_card": "Back Card"
+  },
+  "membership": {
+    "org_name": "Organization / Club Name",
+    "member_name": "Member Name",
+    "member_id": "Member ID / Badge #",
+    "valid_thru": "Expiry Date",
+    "theme_color": "Accent Color",
+    "target_media": "Print Destination",
+    "pvc_tray": "Direct PVC Tray (2 Cards)",
+    "a4_sheet": "A4 Paper Sheet (5-Pair)"
   }
 }

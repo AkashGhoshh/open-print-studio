@@ -15,8 +15,8 @@
 | **Phase 2** | **ID Card Engine** (PDF Worker, Decrypt, Crop Templates, CR-80 Normalizer, S-Curve Contrast, Disclaimer Cleaner) | **COMPLETE (GREEN)** | In-memory decryption test, disclaimer non-overlap integrity test, synthetic card fixtures (58/58 tests passing) | [`docs/reports/phase-2.md`](./reports/phase-2.md) |
 | **Phase 3** | **Sheets & Printing** (Dynamic Solver, A4 5-Pair, 4×6 1-Pair, PVC Tray, Nudge, Flip, Cut Marks, Print Pipeline, PDF/PNG Export) | **COMPLETE (GREEN)** | Golden mm coordinate assertions, double-flip pixel-for-pixel invariance test (73/73 tests passing) | [`docs/reports/phase-3.md`](./reports/phase-3.md) |
 | **Phase 4** | **Overlays & Recents** (Signature/Stamp, Customer Mobile Overlay, IndexedDB `recent_designs`, 24h Auto-Expiry, Privacy Mode) | **COMPLETE (GREEN)** | Storage quota test, auto-expiry cleanup test, privacy mode zero-disk assertion (82/82 tests passing, 99.4% core coverage) | [`docs/reports/phase-4.md`](./reports/phase-4.md) |
-| **Phase 5** | **Visiting & Membership Cards** (A4 10-Up Visiting Card 85×55mm, Finish Presets, CR-80 Membership Template Mode) | **IN PROGRESS** | Visiting card coordinate test, cut guide alignment verification | In progress |
-| **Phase 6** | **AI Passport Photo Studio** (Offline `@mediapipe/tasks-vision`, 1.5px Alpha Feathering, Backgrounds, Dynamic Grid Solver) | **QUEUED** | Sub-1.5s latency benchmark, edge fringe inspection, dynamic grid rotation solver test | Pending |
+| **Phase 5** | **Visiting & Membership Cards** (A4 10-Up Visiting Card 85×55mm, Finish Presets, CR-80 Membership Template Mode) | **COMPLETE (GREEN)** | Visiting card coordinate test, cut guide alignment verification (93/93 tests passing, 99.56% core coverage) | [`docs/reports/phase-5.md`](./reports/phase-5.md) |
+| **Phase 6** | **AI Passport Photo Studio** (Offline `@mediapipe/tasks-vision`, 1.5px Alpha Feathering, Backgrounds, Dynamic Grid Solver) | **IN PROGRESS** | Sub-1.5s latency benchmark, edge fringe inspection, dynamic grid rotation solver test | In progress |
 | **Phase 7** | **Calibration & Ergonomics** (Test Sheet with Rulers, Caliper Offset/Scale Solver, Batch Queue, Shortcuts, `ScannerProvider`) | **QUEUED** | Calibration mathematical solver test, keyboard navigation E2E flow | Pending |
 | **Phase 8** | **Production Hardening & Release** (Strict CSP, Offline Flight-Mode E2E, Telemetry Grep, Windows NSIS/Portable Build, Docs) | **QUEUED** | Offline network blocking test, license audit, clean-room audit, smoke test binary | Pending |
 
@@ -40,8 +40,8 @@ Every contradiction in the original PRD has been resolved, proven with geometry 
 
 ## 3. Current Task & Immediate Next Steps
 
-- **Current Step:** Begin **Phase 5: Visiting and Membership Cards** (A4 10-up layout on 85×55mm, Glossy/Matte/Inkjet finish presets, 3.0mm trim guides, CR-80 Membership template mode with badge overlay).
-- **Completed Steps:** Phase 0 (Spec Hardening), Phase 1 (Foundation), Phase 2 (ID Card Engine), Phase 3 (Sheets & Printing), Phase 4 (Overlays and Recents).
+- **Current Step:** Begin **Phase 6: AI Passport Photo Studio** (offline MediaPipe WebAssembly segmentation, 1.5px feathered alpha mask, studio backgrounds, tonal adjustments, and solver-driven passport grids).
+- **Completed Steps:** Phase 0 (Spec Hardening), Phase 1 (Foundation), Phase 2 (ID Card Engine), Phase 3 (Sheets & Printing), Phase 4 (Overlays and Recents), Phase 5 (Visiting & Membership Cards).
 - **Open Blockers:** None.
 
 

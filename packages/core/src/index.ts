@@ -16,3 +16,6 @@ export * from "./crop/disclaimer-cleaner.js";
 export * from "./layout/sheet-presets.js";
 export * from "./layout/cut-marks.js";
 export * from "./crop/card-overlay.js";
+export * from "./layout/visiting-card-layout.js";
+export * from "./crop/membership-overlay.js";
+export * from "./filters/finish-presets.js";

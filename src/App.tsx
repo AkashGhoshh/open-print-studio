@@ -6,6 +6,8 @@ import { ActiveTab } from "./components/layout/NavTabs.js";
 import { loadSettings, saveSettings, AppSettings } from "./services/storage/settings-schema.js";
 import { Upload, CreditCard, Sparkles, Printer, FileText } from "lucide-react";
 import { IdCardWorkspace } from "./components/idcard/IdCardWorkspace.js";
+import { VisitingCardWorkspace } from "./components/visiting/VisitingCardWorkspace.js";
+import { MembershipCardWorkspace } from "./components/membership/MembershipCardWorkspace.js";
 import { RecentDesignsDrawer } from "./components/recents/RecentDesignsDrawer.js";
 
 export const App: React.FC = () => {
@@ -70,9 +72,10 @@ export const App: React.FC = () => {
       />
 
       <main className="workspace-container">
-        {activeTab === "id_card" ? (
-          <IdCardWorkspace />
-        ) : (
+        {activeTab === "id_card" && <IdCardWorkspace />}
+        {activeTab === "visiting_card" && <VisitingCardWorkspace />}
+        {activeTab === "membership_card" && <MembershipCardWorkspace />}
+        {activeTab !== "id_card" && activeTab !== "visiting_card" && activeTab !== "membership_card" && (
           /* Placeholder View for queued modules */
           <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 32 }}>
             <div style={{
@@ -96,8 +99,6 @@ export const App: React.FC = () => {
                 justifyContent: "center",
                 color: "var(--accent-primary)"
               }}>
-                {activeTab === "visiting_card" && <FileText size={36} />}
-                {activeTab === "membership_card" && <Sparkles size={36} />}
                 {activeTab === "photo_studio" && <Sparkles size={36} />}
                 {activeTab === "calibration" && <Printer size={36} />}
               </div>
