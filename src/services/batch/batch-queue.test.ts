@@ -53,4 +53,28 @@ describe("BatchQueueService", () => {
 
     expect(() => queue.addItem({ title: "Overflow" })).toThrow("Batch queue capacity limit reached");
   });
+
+  it("restores queue state upon crash recovery", () => {
+    const mockStorage: Record<string, string> = {};
+    const storageSpy = {
+      getItem: (key: string) => mockStorage[key] || null,
+      setItem: (key: string, val: string) => { mockStorage[key] = val; },
+      removeItem: (key: string) => { delete mockStorage[key]; },
+    };
+    (globalThis as any).localStorage = storageSpy;
+
+    const queue1 = new BatchQueueService();
+    queue1.addItem({ title: "Recoverable Card 1" });
+    queue1.addItem({ title: "Recoverable Card 2" });
+
+    // Simulate reload / crash recovery
+    const queue2 = new BatchQueueService();
+    expect(queue2.count).toBe(2);
+    expect(queue2.items[0].title).toBe("Recoverable Card 1");
+    expect(queue2.items[1].title).toBe("Recoverable Card 2");
+
+    queue2.clear();
+    const queue3 = new BatchQueueService();
+    expect(queue3.count).toBe(0);
+  });
 });

@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import {
   calculateMobileOverlayCoordinates,
   calculateStampPixelRect,
-} from "../src/crop/card-overlay";
+} from "../src/crop/card-overlay.js";
 
 describe("Card Overlays (Mobile Number & Official Stamp)", () => {
   const cardW = 1011; // 300 DPI CR-80 width

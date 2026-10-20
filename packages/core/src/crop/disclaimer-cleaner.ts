@@ -5,7 +5,7 @@
  * Strictly verifies zero overlap with identity, photo, and QR regions.
  */
 
-import type { RelativeCropRegion } from "./card-normalizer";
+import type { RelativeCropRegion } from "./card-normalizer.js";
 
 export interface BoundingBox2D {
   minX: number;

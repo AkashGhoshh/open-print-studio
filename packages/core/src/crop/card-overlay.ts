@@ -5,7 +5,7 @@
  * Pure TypeScript, zero external dependencies.
  */
 
-import { mmToPx } from "../constants/dpi";
+import { mmToPx } from "../constants/dpi.js";
 
 export type OverlayCornerPosition = "top-left" | "top-right" | "bottom-left" | "bottom-right";
 

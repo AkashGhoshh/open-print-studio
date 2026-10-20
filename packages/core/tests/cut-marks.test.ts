@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { solve4x6IdCardSheet } from "../src/layout/sheet-presets";
-import { generateSlotCutMarks } from "../src/layout/cut-marks";
+import { solve4x6IdCardSheet } from "../src/layout/sheet-presets.js";
+import { generateSlotCutMarks } from "../src/layout/cut-marks.js";
 
 describe("Vector Cut Marks & Trim Guides", () => {
   it("generates 8 tick segments per card slot", () => {

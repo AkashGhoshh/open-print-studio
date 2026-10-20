@@ -3,8 +3,8 @@ import {
   resolveRelativeCrop,
   normalizeToCR80,
   isConformingCR80Aspect,
-} from "../src/crop/card-normalizer";
-import { CR80_DIMENSIONS, CR80_PIXELS_300DPI } from "../src/constants/dimensions";
+} from "../src/crop/card-normalizer.js";
+import { CR80_DIMENSIONS, CR80_PIXELS_300DPI } from "../src/constants/dimensions.js";
 
 describe("CR-80 Card Normalizer & Geometry", () => {
   it("resolves relative crop coordinates to absolute pixels accurately", () => {

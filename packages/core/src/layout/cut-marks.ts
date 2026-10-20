@@ -5,8 +5,8 @@
  * to guide physical guillotine or scissors cutting.
  */
 
-import type { SheetSlot } from "./sheet-presets";
-import { roundMm } from "../constants/dpi";
+import type { SheetSlot } from "./sheet-presets.js";
+import { roundMm } from "../constants/dpi.js";
 
 export interface CutMarkSegment {
   x1Mm: number;

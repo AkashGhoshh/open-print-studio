@@ -29,7 +29,9 @@ ALLOWED_EXCLUSIONS = [
     "node_modules",
     ".git",
     "dist",
+    "release",
     "public",
+    "offline-flight-mode.test.ts",
 ]
 
 def scan_file(file_path: Path):

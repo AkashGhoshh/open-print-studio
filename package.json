@@ -7,15 +7,20 @@
     "packages/*"
   ],
   "type": "module",
+  "main": "dist-electron/main.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:electron": "tsc -p electron/tsconfig.json",
+    "pack": "npm run build && npm run build:electron && electron-builder --dir",
+    "dist:linux": "npm run build && npm run build:electron && electron-builder --linux",
+    "dist:win": "npm run build && npm run build:electron && electron-builder --win",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:core": "vitest run packages/core",
     "test:coverage": "vitest run --coverage",
-    "typecheck": "tsc --noEmit && tsc -p packages/core/tsconfig.json --noEmit",
+    "typecheck": "tsc --noEmit && tsc -p packages/core/tsconfig.json --noEmit && tsc -p electron/tsconfig.json --noEmit",
     "audit:names": "python3 .agents/skills/clean-room-audit/scripts/audit_names.py",
     "audit:telemetry": "python3 .agents/skills/privacy-local-data/scripts/check_no_telemetry.py",
     "validate:skills": "python3 tools/validate_skills.py"

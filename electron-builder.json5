@@ -1,0 +1,43 @@
+{
+  appId: "org.openprintstudio.app",
+  productName: "Open Print Studio",
+  directories: {
+    output: "release",
+    buildResources: "build"
+  },
+  files: [
+    "dist/**/*",
+    "dist-electron/**/*",
+    "public/**/*"
+  ],
+  extraResources: [
+    {
+      from: "public/models",
+      to: "models",
+      filter: ["**/*"]
+    },
+    {
+      from: "public/wasm",
+      to: "wasm",
+      filter: ["**/*"]
+    }
+  ],
+  win: {
+    target: [
+      { target: "nsis", arch: ["x64"] },
+      { target: "portable", arch: ["x64"] }
+    ],
+    artifactName: "${productName}-Setup-${version}.${ext}"
+  },
+  nsis: {
+    oneClick: false,
+    allowToChangeInstallationDirectory: true,
+    createDesktopShortcut: true,
+    createStartMenuShortcut: true
+  },
+  linux: {
+    target: [
+      { target: "dir", arch: ["x64"] }
+    ]
+  }
+}

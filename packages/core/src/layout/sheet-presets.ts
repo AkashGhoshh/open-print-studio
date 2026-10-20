@@ -12,9 +12,9 @@ import {
   PAPER_4X6_HEIGHT_MM,
   CR80_WIDTH_MM,
   CR80_HEIGHT_MM,
-} from "../constants/dimensions";
-import { roundMm } from "../constants/dpi";
-import { mirrorFlipX } from "../geometry/transform";
+} from "../constants/dimensions.js";
+import { roundMm } from "../constants/dpi.js";
+import { mirrorFlipX } from "../geometry/transform.js";
 
 export interface NudgeConfig {
   offsetX?: number; // mm

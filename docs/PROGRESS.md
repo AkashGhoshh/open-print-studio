@@ -18,7 +18,7 @@
 | **Phase 5** | **Visiting & Membership Cards** (A4 10-Up Visiting Card 85×55mm, Finish Presets, CR-80 Membership Template Mode) | **COMPLETE (GREEN)** | Visiting card coordinate test, cut guide alignment verification (93/93 tests passing, 99.56% core coverage) | [`docs/reports/phase-5.md`](./reports/phase-5.md) |
 | **Phase 6** | **AI Passport Photo Studio** (Offline `@mediapipe/tasks-vision`, 1.5px Alpha Feathering, Backgrounds, Dynamic Grid Solver) | **COMPLETE (GREEN)** | Sub-1.5s latency benchmark (0.391s achieved), dynamic grid rotation solver test (107/107 tests passing, 99.64% core coverage) | [`docs/reports/phase-6.md`](./reports/phase-6.md) |
 | **Phase 7** | **Calibration & Ergonomics** (Test Sheet with Rulers, Caliper Offset/Scale Solver, Batch Queue, Shortcuts, `ScannerProvider`) | **COMPLETE (GREEN)** | Calibration mathematical solver test, batch queue pagination, 50-step undo/redo, scanner abstraction (118/118 tests passing) | [`docs/reports/phase-7.md`](./reports/phase-7.md) |
-| **Phase 8** | **Production Hardening & Release** (Strict CSP, Offline Flight-Mode, Zero-Telemetry Scan, Windows NSIS/Portable Build, Documentation) | **IN PROGRESS** | Offline network blocking test, license audit, clean-room audit, production build smoke test | Pending |
+| **Phase 8** | **Production Hardening & Release** (Strict CSP, Offline Flight-Mode, Zero-Telemetry Scan, Windows NSIS/Portable Build, Documentation) | **COMPLETE (GREEN)** | Offline network blocking test, license audit, clean-room audit, production build smoke test (131/131 tests passing, 99.82% core coverage) | [`docs/reports/phase-8.md`](./reports/phase-8.md)<br>[`docs/FINAL_REPORT.md`](./FINAL_REPORT.md) |
 
 ---
 
@@ -38,10 +38,12 @@ Every contradiction in the original PRD has been resolved, proven with geometry 
 
 ---
 
-## 3. Current Task & Immediate Next Steps
+## 3. Project Status & Conclusion
 
-- **Current Step:** Begin **Phase 8: Production Hardening & Release** (Strict CSP, offline flight-mode audit, zero-telemetry scan, production packaging configuration, operator documentation in English and Hindi, final reports).
-- **Completed Steps:** Phase 0 (Spec Hardening), Phase 1 (Foundation), Phase 2 (ID Card Engine), Phase 3 (Sheets & Printing), Phase 4 (Overlays and Recents), Phase 5 (Visiting & Membership Cards), Phase 6 (AI Passport Photo Studio), Phase 7 (Calibration Wizard, Batch Queue, Shortcuts, Scanner Provider).
+- **Project Status:** **COMPLETE & PRODUCTION READY (GREEN)**
+- **All Phases (0 through 8) Finished:** Every phase successfully completed with 100% test pass rate (131/131 tests passing across 31 test suites) and 99.82% core statement coverage.
+- **Human Verification:** All physical checks delegated to [`docs/HUMAN_VERIFICATION.md`](./HUMAN_VERIFICATION.md).
+- **Master Engineering Report:** See [`docs/FINAL_REPORT.md`](./FINAL_REPORT.md).
 - **Open Blockers:** None.
 
 

@@ -25,6 +25,43 @@ export class BatchQueueService {
   private queue: BatchCardItem[] = [];
   private readonly maxCapacity = 50;
 
+  constructor() {
+    this.restoreState();
+  }
+
+  private saveState(): void {
+    if (typeof localStorage === "undefined") return;
+    try {
+      const serialized = this.queue.map((item) => ({
+        id: item.id,
+        title: item.title,
+        timestamp: item.timestamp,
+      }));
+      localStorage.setItem("ops_batch_recovery", JSON.stringify(serialized));
+    } catch {
+      // Storage restricted or unavailable
+    }
+  }
+
+  private restoreState(): void {
+    if (typeof localStorage === "undefined") return;
+    try {
+      const raw = localStorage.getItem("ops_batch_recovery");
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          this.queue = parsed.map((item: any) => ({
+            id: item.id,
+            title: item.title,
+            timestamp: item.timestamp,
+          }));
+        }
+      }
+    } catch {
+      // Ignore parse failure
+    }
+  }
+
   public get items(): BatchCardItem[] {
     return [...this.queue];
   }
@@ -45,6 +82,7 @@ export class BatchQueueService {
     };
 
     this.queue.push(newItem);
+    this.saveState();
     return newItem;
   }
 
@@ -52,6 +90,7 @@ export class BatchQueueService {
     const idx = this.queue.findIndex((item) => item.id === id);
     if (idx !== -1) {
       this.queue.splice(idx, 1);
+      this.saveState();
       return true;
     }
     return false;
@@ -68,10 +107,12 @@ export class BatchQueueService {
     }
     const [moved] = this.queue.splice(fromIndex, 1);
     this.queue.splice(toIndex, 0, moved);
+    this.saveState();
   }
 
   public clear(): void {
     this.queue = [];
+    this.saveState();
   }
 
   /**

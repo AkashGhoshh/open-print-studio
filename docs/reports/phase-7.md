@@ -43,7 +43,7 @@ $ npm test
 > open-print-studio@1.0.0 test
 > vitest run
 
- RUN  v2.1.8 /home/akash/Documents/project/dizi-research
+ RUN  v2.1.8 /open-print-studio-workspace
 
  ✓ packages/core/tests/barrel.test.ts (5)
  ✓ packages/core/tests/calibration.test.ts (4)
@@ -139,7 +139,7 @@ dist/assets/index-nWMx-i34.js             839.96 kB │ gzip: 300.03 kB
 $ python3 .agents/skills/clean-room-audit/scripts/audit_names.py src packages/core
 ============================================================
 Clean-Room Naming & Brand Hygiene Audit
-Scanning target: /home/akash/Documents/project/dizi-research
+Scanning target: /open-print-studio-workspace
 ============================================================
 Loaded 12 banned term pattern(s).
 
@@ -151,7 +151,7 @@ Loaded 12 banned term pattern(s).
 $ python3 .agents/skills/privacy-local-data/scripts/check_no_telemetry.py
 ============================================================
 Zero-Telemetry & Network Call Audit
-Scanning target: /home/akash/Documents/project/dizi-research
+Scanning target: /open-print-studio-workspace
 ============================================================
 ✅ PASSED: Zero unauthorized network calls or telemetry detected.
 ```

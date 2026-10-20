@@ -6,7 +6,8 @@ import {
   PERMITTED_DISCLAIMER_BOUNDS,
   boxesIntersect,
   regionToBoundingBox,
-} from "../src/crop/disclaimer-cleaner";
+  BoundingBox2D,
+} from "../src/crop/disclaimer-cleaner.js";
 
 describe("Opt-in Disclaimer Cleaner & Pixel Integrity Safeguards", () => {
   it("approves valid disclaimer box falling strictly within permitted zone", () => {
@@ -33,7 +34,7 @@ describe("Opt-in Disclaimer Cleaner & Pixel Integrity Safeguards", () => {
 
     const result = verifyDisclaimerSafety(creepingRegion);
     expect(result.safe).toBe(false);
-    expect(result.violations.some((v) => v.includes("exceeds permitted boundary"))).toBe(true);
+    expect(result.violations.some((v: string) => v.includes("exceeds permitted boundary"))).toBe(true);
   });
 
   it("strictly rejects any region intersecting the identity photo zone", () => {
@@ -47,7 +48,7 @@ describe("Opt-in Disclaimer Cleaner & Pixel Integrity Safeguards", () => {
 
     const result = verifyDisclaimerSafety(photoIntersecting);
     expect(result.safe).toBe(false);
-    expect(result.violations.some((v) => v.includes("photo"))).toBe(true);
+    expect(result.violations.some((v: string) => v.includes("photo"))).toBe(true);
   });
 
   it("strictly rejects any region intersecting the QR code zone", () => {
@@ -61,7 +62,7 @@ describe("Opt-in Disclaimer Cleaner & Pixel Integrity Safeguards", () => {
 
     const result = verifyDisclaimerSafety(qrIntersecting);
     expect(result.safe).toBe(false);
-    expect(result.violations.some((v) => v.includes("qrCode"))).toBe(true);
+    expect(result.violations.some((v: string) => v.includes("qrCode"))).toBe(true);
   });
 
   it("strictly rejects any region intersecting demographic text zone", () => {
@@ -75,7 +76,7 @@ describe("Opt-in Disclaimer Cleaner & Pixel Integrity Safeguards", () => {
 
     const result = verifyDisclaimerSafety(demoIntersecting);
     expect(result.safe).toBe(false);
-    expect(result.violations.some((v) => v.includes("demographics"))).toBe(true);
+    expect(result.violations.some((v: string) => v.includes("demographics"))).toBe(true);
   });
 
   it("proves mathematical pixel integrity: protected zones are 100% untouched", () => {
@@ -111,7 +112,8 @@ describe("Opt-in Disclaimer Cleaner & Pixel Integrity Safeguards", () => {
 
     // VERIFICATION: Check EVERY pixel in all protected zones.
     // Sum of absolute differences must be identically 0.
-    for (const [zoneName, zone] of Object.entries(PROTECTED_ZONES)) {
+    for (const [zoneName, zoneRaw] of Object.entries(PROTECTED_ZONES)) {
+      const zone = zoneRaw as BoundingBox2D;
       const startX = Math.round(zone.minX * width);
       const endX = Math.round(zone.maxX * width);
       const startY = Math.round(zone.minY * height);

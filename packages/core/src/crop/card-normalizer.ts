@@ -5,8 +5,8 @@
  * Pure TypeScript, zero external dependencies.
  */
 
-import { CR80_DIMENSIONS, CR80_PIXELS_300DPI } from "../constants/dimensions";
-import { mmToPx } from "../constants/dpi";
+import { CR80_DIMENSIONS, CR80_PIXELS_300DPI } from "../constants/dimensions.js";
+import { mmToPx } from "../constants/dpi.js";
 
 export type RotationAngle = 0 | 90 | 180 | 270;
 

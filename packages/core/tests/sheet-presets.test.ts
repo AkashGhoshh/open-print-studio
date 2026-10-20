@@ -3,7 +3,7 @@ import {
   solveA4IdCardSheet,
   solve4x6IdCardSheet,
   solvePvcTraySheet,
-} from "../src/layout/sheet-presets";
+} from "../src/layout/sheet-presets.js";
 
 describe("Sheet Presets & Golden Coordinates", () => {
   it("matches golden coordinates for A4 5-Pair sheet (10 cards)", () => {
