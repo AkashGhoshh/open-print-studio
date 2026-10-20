@@ -19,3 +19,6 @@ export * from "./crop/card-overlay.js";
 export * from "./layout/visiting-card-layout.js";
 export * from "./crop/membership-overlay.js";
 export * from "./filters/finish-presets.js";
+export * from "./layout/passport-grid-solver.js";
+export * from "./filters/feathering.js";
+export * from "./filters/photo-adjustments.js";

@@ -8,6 +8,7 @@ import { Upload, CreditCard, Sparkles, Printer, FileText } from "lucide-react";
 import { IdCardWorkspace } from "./components/idcard/IdCardWorkspace.js";
 import { VisitingCardWorkspace } from "./components/visiting/VisitingCardWorkspace.js";
 import { MembershipCardWorkspace } from "./components/membership/MembershipCardWorkspace.js";
+import { PhotoStudioWorkspace } from "./components/photo/PhotoStudioWorkspace.js";
 import { RecentDesignsDrawer } from "./components/recents/RecentDesignsDrawer.js";
 
 export const App: React.FC = () => {
@@ -75,8 +76,9 @@ export const App: React.FC = () => {
         {activeTab === "id_card" && <IdCardWorkspace />}
         {activeTab === "visiting_card" && <VisitingCardWorkspace />}
         {activeTab === "membership_card" && <MembershipCardWorkspace />}
-        {activeTab !== "id_card" && activeTab !== "visiting_card" && activeTab !== "membership_card" && (
-          /* Placeholder View for queued modules */
+        {activeTab === "photo_studio" && <PhotoStudioWorkspace />}
+        {activeTab === "calibration" && (
+          /* Placeholder View for queued calibration module */
           <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 32 }}>
             <div style={{
               maxWidth: 640,
@@ -99,7 +101,6 @@ export const App: React.FC = () => {
                 justifyContent: "center",
                 color: "var(--accent-primary)"
               }}>
-                {activeTab === "photo_studio" && <Sparkles size={36} />}
                 {activeTab === "calibration" && <Printer size={36} />}
               </div>
 

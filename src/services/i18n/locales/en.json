@@ -79,5 +79,23 @@
     "target_media": "Print Destination",
     "pvc_tray": "Direct PVC Tray (2 Cards)",
     "a4_sheet": "A4 Paper Sheet (5-Pair)"
+  },
+  "photo": {
+    "remove_bg": "AI Background Removal",
+    "bg_color": "Studio Background",
+    "studio_blue": "Studio Blue",
+    "white": "Pure White",
+    "grey": "Light Grey",
+    "transparent": "Transparent",
+    "preset": "Photo Size Preset",
+    "passport_in": "Indian Passport (35x45 mm)",
+    "stamp": "Stamp Photo (25x30 mm)",
+    "visa_us": "US Visa (2x2 inch)",
+    "media_paper": "Photo Paper",
+    "count": "Copies on Sheet",
+    "brightness": "Brightness",
+    "contrast": "Contrast",
+    "saturation": "Saturation",
+    "low_res_warning": "Low resolution image detected (< 600 px). Printout may appear grainy."
   }
 }

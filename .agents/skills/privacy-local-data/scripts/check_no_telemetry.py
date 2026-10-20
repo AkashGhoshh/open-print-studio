@@ -29,6 +29,7 @@ ALLOWED_EXCLUSIONS = [
     "node_modules",
     ".git",
     "dist",
+    "public",
 ]
 
 def scan_file(file_path: Path):
