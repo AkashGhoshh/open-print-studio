@@ -144,6 +144,54 @@ class IndexedDbService {
   }
 
   /**
+   * Saves a named printer calibration profile.
+   */
+  public async savePrinterProfile(profile: PrinterProfileRecord): Promise<void> {
+    const db = await this.getDb();
+
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_PROFILES, "readwrite");
+      const store = tx.objectStore(STORE_PROFILES);
+      const req = store.put(profile);
+
+      req.onsuccess = () => resolve();
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  /**
+   * Retrieves all saved printer calibration profiles.
+   */
+  public async getPrinterProfiles(): Promise<PrinterProfileRecord[]> {
+    const db = await this.getDb();
+
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_PROFILES, "readonly");
+      const store = tx.objectStore(STORE_PROFILES);
+      const req = store.getAll();
+
+      req.onsuccess = () => resolve(req.result || []);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  /**
+   * Deletes a printer calibration profile by ID.
+   */
+  public async deletePrinterProfile(id: string): Promise<void> {
+    const db = await this.getDb();
+
+    return new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_PROFILES, "readwrite");
+      const store = tx.objectStore(STORE_PROFILES);
+      const req = store.delete(id);
+
+      req.onsuccess = () => resolve();
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  /**
    * Cleans all sessions older than the specified retention window (default: 24 hours).
    */
   public async cleanExpiredDesigns(retentionHours = 24): Promise<number> {

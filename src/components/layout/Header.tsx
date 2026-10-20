@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Sun, Moon, Languages, ShieldCheck, Printer, History } from "lucide-react";
+import { Sun, Moon, Languages, ShieldCheck, Printer, History, Layers } from "lucide-react";
 import { NavTabs, ActiveTab } from "./NavTabs.js";
 
 interface HeaderProps {
@@ -12,6 +12,8 @@ interface HeaderProps {
   onToggleLocale: () => void;
   privacyMode: boolean;
   onOpenRecents?: () => void;
+  onOpenBatchQueue?: () => void;
+  batchCount?: number;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -23,6 +25,8 @@ export const Header: React.FC<HeaderProps> = ({
   onToggleLocale,
   privacyMode,
   onOpenRecents,
+  onOpenBatchQueue,
+  batchCount = 0,
 }) => {
   const { t } = useTranslation();
 
@@ -72,6 +76,41 @@ export const Header: React.FC<HeaderProps> = ({
             aria-label="Recent Designs"
           >
             <History size={18} />
+          </button>
+        )}
+
+        {/* Batch Queue Drawer Button */}
+        {onOpenBatchQueue && (
+          <button
+            className="icon-btn"
+            onClick={onOpenBatchQueue}
+            title="Batch Queue (Multi-Card Printing)"
+            type="button"
+            aria-label="Batch Queue"
+            style={{ position: "relative" }}
+          >
+            <Layers size={18} />
+            {batchCount > 0 && (
+              <span
+                style={{
+                  position: "absolute",
+                  top: -4,
+                  right: -4,
+                  backgroundColor: "var(--accent-primary)",
+                  color: "#FFFFFF",
+                  borderRadius: "50%",
+                  width: 16,
+                  height: 16,
+                  fontSize: "0.625rem",
+                  fontWeight: 700,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                {batchCount}
+              </span>
+            )}
           </button>
         )}
 

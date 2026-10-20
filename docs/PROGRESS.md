@@ -17,8 +17,8 @@
 | **Phase 4** | **Overlays & Recents** (Signature/Stamp, Customer Mobile Overlay, IndexedDB `recent_designs`, 24h Auto-Expiry, Privacy Mode) | **COMPLETE (GREEN)** | Storage quota test, auto-expiry cleanup test, privacy mode zero-disk assertion (82/82 tests passing, 99.4% core coverage) | [`docs/reports/phase-4.md`](./reports/phase-4.md) |
 | **Phase 5** | **Visiting & Membership Cards** (A4 10-Up Visiting Card 85×55mm, Finish Presets, CR-80 Membership Template Mode) | **COMPLETE (GREEN)** | Visiting card coordinate test, cut guide alignment verification (93/93 tests passing, 99.56% core coverage) | [`docs/reports/phase-5.md`](./reports/phase-5.md) |
 | **Phase 6** | **AI Passport Photo Studio** (Offline `@mediapipe/tasks-vision`, 1.5px Alpha Feathering, Backgrounds, Dynamic Grid Solver) | **COMPLETE (GREEN)** | Sub-1.5s latency benchmark (0.391s achieved), dynamic grid rotation solver test (107/107 tests passing, 99.64% core coverage) | [`docs/reports/phase-6.md`](./reports/phase-6.md) |
-| **Phase 7** | **Calibration & Ergonomics** (Test Sheet with Rulers, Caliper Offset/Scale Solver, Batch Queue, Shortcuts, `ScannerProvider`) | **IN PROGRESS** | Calibration mathematical solver test, keyboard navigation E2E flow | In progress |
-| **Phase 8** | **Production Hardening & Release** (Strict CSP, Offline Flight-Mode E2E, Telemetry Grep, Windows NSIS/Portable Build, Docs) | **QUEUED** | Offline network blocking test, license audit, clean-room audit, smoke test binary | Pending |
+| **Phase 7** | **Calibration & Ergonomics** (Test Sheet with Rulers, Caliper Offset/Scale Solver, Batch Queue, Shortcuts, `ScannerProvider`) | **COMPLETE (GREEN)** | Calibration mathematical solver test, batch queue pagination, 50-step undo/redo, scanner abstraction (118/118 tests passing) | [`docs/reports/phase-7.md`](./reports/phase-7.md) |
+| **Phase 8** | **Production Hardening & Release** (Strict CSP, Offline Flight-Mode, Zero-Telemetry Scan, Windows NSIS/Portable Build, Documentation) | **IN PROGRESS** | Offline network blocking test, license audit, clean-room audit, production build smoke test | Pending |
 
 ---
 
@@ -40,8 +40,8 @@ Every contradiction in the original PRD has been resolved, proven with geometry 
 
 ## 3. Current Task & Immediate Next Steps
 
-- **Current Step:** Begin **Phase 7: Calibration Wizard & Ergonomics** (Test sheet with 100 mm reference rulers, caliper measurement offset/scale solver, batch queue, undo/redo stack, keyboard shortcuts, and `ScannerProvider` interface).
-- **Completed Steps:** Phase 0 (Spec Hardening), Phase 1 (Foundation), Phase 2 (ID Card Engine), Phase 3 (Sheets & Printing), Phase 4 (Overlays and Recents), Phase 5 (Visiting & Membership Cards), Phase 6 (AI Passport Photo Studio).
+- **Current Step:** Begin **Phase 8: Production Hardening & Release** (Strict CSP, offline flight-mode audit, zero-telemetry scan, production packaging configuration, operator documentation in English and Hindi, final reports).
+- **Completed Steps:** Phase 0 (Spec Hardening), Phase 1 (Foundation), Phase 2 (ID Card Engine), Phase 3 (Sheets & Printing), Phase 4 (Overlays and Recents), Phase 5 (Visiting & Membership Cards), Phase 6 (AI Passport Photo Studio), Phase 7 (Calibration Wizard, Batch Queue, Shortcuts, Scanner Provider).
 - **Open Blockers:** None.
 
 

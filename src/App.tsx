@@ -9,7 +9,10 @@ import { IdCardWorkspace } from "./components/idcard/IdCardWorkspace.js";
 import { VisitingCardWorkspace } from "./components/visiting/VisitingCardWorkspace.js";
 import { MembershipCardWorkspace } from "./components/membership/MembershipCardWorkspace.js";
 import { PhotoStudioWorkspace } from "./components/photo/PhotoStudioWorkspace.js";
+import { CalibrationWizard } from "./components/calibration/CalibrationWizard.js";
 import { RecentDesignsDrawer } from "./components/recents/RecentDesignsDrawer.js";
+import { BatchQueueDrawer } from "./components/batch/BatchQueueDrawer.js";
+import { batchQueueService } from "./services/batch/batch-queue.js";
 
 export const App: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -17,6 +20,7 @@ export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<ActiveTab>("id_card");
   const [statusMessage, setStatusMessage] = useState<string>("");
   const [isRecentsOpen, setIsRecentsOpen] = useState<boolean>(false);
+  const [isBatchOpen, setIsBatchOpen] = useState<boolean>(false);
 
   // Sync theme to DOM data-theme
   useEffect(() => {
@@ -53,6 +57,24 @@ export const App: React.FC = () => {
       } else if (e.ctrlKey && e.key.toLowerCase() === "o") {
         e.preventDefault();
         setStatusMessage(t("action.upload_file"));
+      } else if (e.ctrlKey && e.key === "1") {
+        e.preventDefault();
+        setActiveTab("id_card");
+      } else if (e.ctrlKey && e.key === "2") {
+        e.preventDefault();
+        setActiveTab("visiting_card");
+      } else if (e.ctrlKey && e.key === "3") {
+        e.preventDefault();
+        setActiveTab("membership_card");
+      } else if (e.ctrlKey && e.key === "4") {
+        e.preventDefault();
+        setActiveTab("photo_studio");
+      } else if (e.ctrlKey && e.key === "5") {
+        e.preventDefault();
+        setActiveTab("calibration");
+      } else if (e.key === "Escape") {
+        setIsRecentsOpen(false);
+        setIsBatchOpen(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -70,6 +92,8 @@ export const App: React.FC = () => {
         onToggleLocale={handleToggleLocale}
         privacyMode={settings.privacyMode}
         onOpenRecents={() => setIsRecentsOpen(true)}
+        onOpenBatchQueue={() => setIsBatchOpen(true)}
+        batchCount={batchQueueService.count}
       />
 
       <main className="workspace-container">
@@ -77,52 +101,7 @@ export const App: React.FC = () => {
         {activeTab === "visiting_card" && <VisitingCardWorkspace />}
         {activeTab === "membership_card" && <MembershipCardWorkspace />}
         {activeTab === "photo_studio" && <PhotoStudioWorkspace />}
-        {activeTab === "calibration" && (
-          /* Placeholder View for queued calibration module */
-          <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 32 }}>
-            <div style={{
-              maxWidth: 640,
-              width: "100%",
-              textAlign: "center",
-              padding: 40,
-              borderRadius: "var(--border-radius-lg)",
-              backgroundColor: "var(--bg-surface)",
-              border: "2px dashed var(--border-strong)",
-              boxShadow: "var(--shadow-md)"
-            }}>
-              <div style={{
-                width: 72,
-                height: 72,
-                margin: "0 auto 20px",
-                borderRadius: "50%",
-                backgroundColor: "var(--accent-surface)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "var(--accent-primary)"
-              }}>
-                {activeTab === "calibration" && <Printer size={36} />}
-              </div>
-
-              <h2 style={{ fontSize: "1.5rem", fontWeight: 700, marginBottom: 8 }}>
-                {t(`nav.${activeTab}`)}
-              </h2>
-              <p style={{ color: "var(--text-secondary)", marginBottom: 28, fontSize: "0.9375rem" }}>
-                {t("app.tagline")} — 100% Offline & Pure Core Math
-              </p>
-
-              <button
-                className="btn btn-primary"
-                style={{ margin: "0 auto" }}
-                type="button"
-                onClick={() => setStatusMessage(t("action.upload_file"))}
-              >
-                <Upload size={20} />
-                <span>{t("action.upload_file")}</span>
-              </button>
-            </div>
-          </div>
-        )}
+        {activeTab === "calibration" && <CalibrationWizard />}
       </main>
 
       <StatusBar statusMessage={statusMessage} />
@@ -132,6 +111,14 @@ export const App: React.FC = () => {
         onClose={() => setIsRecentsOpen(false)}
         onSelectDesign={(design) => {
           setStatusMessage(`Loaded session: ${design.title}`);
+        }}
+      />
+
+      <BatchQueueDrawer
+        isOpen={isBatchOpen}
+        onClose={() => setIsBatchOpen(false)}
+        onPrintBatch={() => {
+          setStatusMessage("Printing all queued batch sheets...");
         }}
       />
     </div>
